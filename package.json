@@ -1,0 +1,35 @@
+{
+  "name": "postcss-currency",
+  "version": "0.1.0",
+  "description": "PostCSS plugin replaces the name of currency with symbols.",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "currency",
+    "symbols"
+  ],
+  "author": "talgautb <talgautb@yandex.kz>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/talgautb/postcss-currency.git"
+  },
+  "bugs": {
+    "url": "https://github.com/talgautb/postcss-currency/issues"
+  },
+  "homepage": "https://github.com/talgautb/postcss-currency",
+  "dependencies": {
+    "postcss": "^5.0.2",
+    "typographic-currency-db": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.0.0",
+    "gulp-mocha": "^2.1.3"
+  },
+  "scripts": {
+    "test": "gulp"
+  }
+}
