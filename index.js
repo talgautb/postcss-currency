@@ -1,8 +1,7 @@
 var postcss = require('postcss');
 var currencyDB = require('typographic-currency-db');
 
-module.exports = postcss.plugin('postcss-currency', function (opts) {
-    opts = opts || {};
+module.exports = postcss.plugin('postcss-currency', function () {
 
     return function (css) {
 
