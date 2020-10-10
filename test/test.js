@@ -1,42 +1,41 @@
-var postcss = require('postcss');
-var expect  = require('chai').expect;
+let postcss = require('postcss');
+let expect = require('chai').expect;
 
-var plugin = require('../');
+let plugin = require('../');
 
-var test = function (input, output, opts) {
-    return postcss([ plugin(opts) ]).process(input).then(function (result) {
-        expect(result.css).toEqual(output);
-        expect(result.warnings()).toHaveLength(0);
+let test = function (input, output, opts) {
+  return postcss([plugin(opts)])
+    .process(input, { from: undefined })
+    .then((result) => {
+      expect(result.css).to.equal(output);
+      expect(result.warnings()).to.have.length(0);
     });
 };
 
-describe('postcss-currency', function () {
+describe('postcss-currency', () => {
+  it('simple test', () => {
+    return test("a:after{content: 'kzt'}", "a:after{content: '₸'}", {});
+  });
 
-    it('simple test', function () {
-        test('a:after{content: \'kzt\'}', 'a:after{content: \'₸\'}', { } );
-    });
+  it('check uppercase', () => {
+    return test('a:after{ content: "JPy"}', 'a:after{ content: "¥"}', {});
+  });
 
-    it('check uppercase', function () {
-        test('a:after{ content: "JPy"}', 'a:after{ content: "¥"}', { } );
-    });
-
-    it('another content', function () {
-        test('a:before{ content: euri}', 'a:before{ content: euri}', { } );
-    });
-
+  it('another content', () => {
+    return test('a:before{ content: euri}', 'a:before{ content: euri}', {});
+  });
 });
 
-describe('check quotes', function () {
+describe('check quotes', () => {
+  it('check double quotes', () => {
+    return test("a:after{content: 'usd'}", "a:after{content: '$'}", {});
+  });
 
-    it('check dowble quotes', function () {
-        test('a:after{content: \'usd\'}', 'a:after{content: \'$\'}', { } );
-    });
+  it('check double quotes', () => {
+    return test('a:after{ content: "gbp"}', 'a:after{ content: "£"}', {});
+  });
 
-    it('check dowble quotes', function () {
-        test('a:after{ content: "gbp"}', 'a:after{ content: "£"}', { } );
-    });
-
-    it('witout quotes', function () {
-        test('a:before{ content: cny}', 'a:before{ content: ¥}', { } );
-    });
+  it('without quotes', () => {
+    return test('a:before{ content: cny}', 'a:before{ content: ¥}', {});
+  });
 });
