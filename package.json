@@ -20,13 +20,13 @@
   },
   "homepage": "https://github.com/talgautb/postcss-currency",
   "dependencies": {
-    "postcss": "^8.1.1",
-    "typographic-currency-db": "^1.0.1"
+    "postcss": "^7.0.35",
+    "typographic-currency-db": "^1.1.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^7.10.0",
-    "eslint-config-postcss": "^4.0.0",
+    "eslint": "^7.11.0",
+    "eslint-config-postcss": "^2.0.2",
     "gulp": "^4.0.2",
     "gulp-mocha": "^7.0.2"
   },
@@ -34,6 +34,27 @@
     "test": "gulp && eslint *.js"
   },
   "eslintConfig": {
-    "extends": "eslint-config-postcss/es5"
+    "env": {
+      "es6": true,
+      "mocha": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "eslint-config-postcss/es5"
+    ],
+    "rules": {
+      "comma-dangle": 0,
+      "function-paren-newline": 0,
+      "indent": [
+        "error",
+        2
+      ],
+      "quotes": [
+        "warn",
+        "single"
+      ],
+      "semi": 0
+    }
   }
 }
