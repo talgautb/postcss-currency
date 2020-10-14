@@ -25,10 +25,11 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^7.11.0",
+    "eslint": "^5.11.0",
     "eslint-config-postcss": "^2.0.2",
     "gulp": "^4.0.2",
-    "gulp-mocha": "^7.0.2"
+    "gulp-cli": "^2.3.0",
+    "gulp-mocha": "^6.0.0"
   },
   "scripts": {
     "test": "gulp && eslint *.js"
