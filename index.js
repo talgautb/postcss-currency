@@ -1,19 +1,19 @@
-var postcss = require('postcss');
-var currencyDB = require('typographic-currency-db');
+let currencyDB = require('typographic-currency-db');
 
-module.exports = postcss.plugin('postcss-currency', function () {
-  return function (css) {
-    css.walkDecls('content', function (decl) {
-      var quote = decl.value.match(/'|"/);
+module.exports = () => {
+  return {
+    postcssPlugin: 'postcss-currency',
+    Declaration(decl) {
+      let quote = decl.value.match(/'|"/);
+      let value = decl.value.replace(/["']+/g, '').toUpperCase();
+
       quote = quote ? quote[0] : '';
 
-      for (var key in currencyDB) {
-        var value = decl.value.replace(/['"]+/g, '').toUpperCase();
-
-        if (value === key) {
-          decl.value = quote + currencyDB[key] + quote;
-        }
+      if (Object.prototype.hasOwnProperty.call(currencyDB, value)) {
+        decl.value = quote + currencyDB[value] + quote;
       }
-    });
+    }
   };
-});
+};
+
+module.exports.postcss = true;
